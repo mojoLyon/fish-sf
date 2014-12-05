@@ -6,8 +6,11 @@ Provide a symfony2 console function with completion.
 
 This tool still in development.
 
-For test purpose only you can add the file `functions/sf.fish` in your `~/.config/fish/functions` 
-and  `completions/sf.fish` in your `~/.config/fish/completions`
+If you have copied files manually in your fish config directory, delete files before running the below command.
+
+```shell
+curl -L https://raw.githubusercontent.com/mojoLyon/fish-sf/master/tools/install.fish | fish
+```
 
 ## Usage
 
