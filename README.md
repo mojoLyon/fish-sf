@@ -9,7 +9,7 @@ This tool still in development.
 If you have copied files manually in your fish config directory, delete files before running the below command.
 
 ```shell
-curl -L https://raw.githubusercontent.com/mojoLyon/fish-sf/master/tools/install.fish | fish
+curl -L https://github.com/mojoLyon/fish-sf/raw/master/tools/install.fish | fish
 ```
 
 ## Usage
