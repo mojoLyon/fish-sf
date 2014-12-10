@@ -34,19 +34,23 @@ function __fish_sf_using_command_with_switch
 end
 
 function __sf_get_config_bundle
-	command ./app/console config:dump-reference | sed -e 's/^[^:]*:\s*//'
+	type app/console > /dev/null
+	and app/console config:dump-reference | sed -e 's/^[^:]*:\s*//'
 end
 
 function __sf_get_services
-	command ./app/console  --no-ansi container:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
+	type app/console > /dev/null
+	and command ./app/console  --no-ansi container:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
 end
 
 function __sf_get_container_tag
-	command ./app/console --no-ansi container:debug --tags | awk '/^\[tag\]/ {print $0}' | sed -e 's/^\[tag\]\s*\(.*\)/\1/'
+	type app/console > /dev/null
+	and command ./app/console --no-ansi container:debug --tags | awk '/^\[tag\]/ {print $0}' | sed -e 's/^\[tag\]\s*\(.*\)/\1/'
 end
 
 function __sf_get_routes
-	command ./app/console  --no-ansi router:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
+	type app/console > /dev/null
+	and command ./app/console  --no-ansi router:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
 end
 
 #cache
