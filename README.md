@@ -18,7 +18,7 @@ curl -L https://github.com/mojoLyon/fish-sf/raw/master/tools/install.fish | fish
 
 ```shell
 git clone git://github.com/mojoLyon/fish-sf.git ~/.fish-sf
-``
+```
 
 2. Create symbolic link to function and completion
 
@@ -26,6 +26,7 @@ git clone git://github.com/mojoLyon/fish-sf.git ~/.fish-sf
 ln -s ~/.fish-sf/functions/sf.fish ~/.config/fish/functions/sf.fish
 ln -s ~/.fish-sf/completions/sf.fish ~/.config/fish/completions/sf.fish
 ```
+
 ## Usage
 
 Some tab completion are only available when you are in a symfony directory, the command just use `app/console` provided by symfony2 
