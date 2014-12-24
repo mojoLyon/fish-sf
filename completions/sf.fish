@@ -32,6 +32,7 @@ complete -c sf -n '__fish_use_subcommand' -xa 'server:run'            -d 'Runs P
 complete -c sf -n '__fish_use_subcommand' -xa 'translation:update'    -d 'Updates the translation file'
 complete -c sf -n '__fish_use_subcommand' -xa 'twig:lint'             -d 'Lints a template and outputs encountered errors'
 complete -c sf -n '__fish_use_subcommand' -xa 'generate:bundle'       -d 'Generate a bundle'
+complete -c sf -n '__fish_use_subcommand' -xa 'generate:controller'   -d 'Generates a controller'
 
 # assetic
 set -l assetic_dump -c sf -n 'contains assetic:dump (commandline -poc)'
@@ -85,3 +86,11 @@ complete $generate_bundle -c sf -x -l 'dir'         -a '(__fish_complete_directo
 complete $generate_bundle -c sf -x -l 'bundle-name'                                       -d 'The bundle name'
 complete $generate_bundle -c sf -x -l 'format'      -a 'php xml yml annotation'           -d 'Format for configuration files'
 complete $generate_bundle -c sf -x -l 'structure'                                         -d 'Generate the whole directory structure'
+
+# generate controller
+set -l generate_controller -c sf -n 'contains generate:controller (commandline -poc)'
+complete $generate_controller -c sf -x -l 'no-interaction'                           -d 'Disable interactive dialog'
+complete $generate_controller -c sf -x -l 'controller'                               -d 'The name of the controller to create'
+complete $generate_controller -c sf -x -l 'route-format' -a 'php xml yml annotation' -d 'The format that is used for the routing'
+complete $generate_controller -c sf -x -l 'template-format' -a 'php twig'            -d 'The format that is used for templating'
+complete $generate_controller -c sf -x -l 'actions'                                  -d 'The actions in the controller'
