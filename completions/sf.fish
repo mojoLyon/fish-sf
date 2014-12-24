@@ -31,6 +31,7 @@ complete -c sf -n '__fish_use_subcommand' -xa 'router:match'          -d 'Helps 
 complete -c sf -n '__fish_use_subcommand' -xa 'server:run'            -d 'Runs PHP built-in web server'
 complete -c sf -n '__fish_use_subcommand' -xa 'translation:update'    -d 'Updates the translation file'
 complete -c sf -n '__fish_use_subcommand' -xa 'twig:lint'             -d 'Lints a template and outputs encountered errors'
+complete -c sf -n '__fish_use_subcommand' -xa 'generate:bundle'       -d 'Generate a bundle'
 
 # assetic
 set -l assetic_dump -c sf -n 'contains assetic:dump (commandline -poc)'
@@ -75,3 +76,12 @@ complete $trans_update -x -c sf -l 'clean'                            -d 'Should
 # twig
 set -l twig_lint -c sf -n 'contains twig:lint (commandline -poc)'
 complete $twig_lint -c sf -a '(__fish_complete_suffix .twig)' -d 'Twig file'
+
+# generate bundle
+set -l generate_bundle -c sf -n 'contains generate:bundle (commandline -poc)'
+complete $generate_bundle -c sf -x -l 'no-interaction'                                    -d 'Disable interactive dialog'
+complete $generate_bundle -c sf -x -l 'namespace'                                         -d 'The namespace of the bundle to create'
+complete $generate_bundle -c sf -x -l 'dir'         -a '(__fish_complete_directories "")' -d 'The directory where to create the bundle'
+complete $generate_bundle -c sf -x -l 'bundle-name'                                       -d 'The bundle name'
+complete $generate_bundle -c sf -x -l 'format'      -a 'php xml yml annotation'           -d 'Format for configuration files'
+complete $generate_bundle -c sf -x -l 'structure'                                         -d 'Generate the whole directory structure'
