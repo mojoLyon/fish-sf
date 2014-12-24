@@ -29,7 +29,7 @@ to provide some completion
  - config:dump-reference with completion of bundle
  - container:debug with completion of services
     * --tags
-    * --tag with completion of tag
+    * --tag with tag completion
     * --parameters
     * --parameter
  - router:debug with completion of route name
@@ -37,12 +37,40 @@ to provide some completion
     * --base-uri
  - router:match
  - server:run
-    * --address
     * --docroot
     * --router
  - translation:update
-    * --address
+    * --prefix
     * --force
     * --clean
     * --output-format
+    * --dump-messages
  - twig:lint with file filtering
+ - generate:bundle
+    * --no-interaction
+    * --namespace
+    * --dir with directories completion
+    * --bundle-name
+    * --format with format suggestion
+    * --structure
+ - generate_controlle
+    * --no-interaction
+    * --controller
+    * --route-format with format suggestion
+    * --template-format with format suggestion
+    * --actions
+ - generate:doctrine:crud and alias doctrine:generate:crud
+    * --entity
+    * --route-prefix
+    * --with-write
+    * --format with format suggestion
+    * --overwrite
+ - generate:doctrine:entity and alias doctrine:generate:entity
+    * --no-interaction
+    * --entity
+    * --fields
+    * --format with format suggestion
+    * --with-repository
+ - generate:doctrine:entities and alias doctrine:generate:entities
+    * --path with directories completion
+    * --no-backup
