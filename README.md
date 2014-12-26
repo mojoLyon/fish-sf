@@ -1,6 +1,6 @@
 # Fish-sf
 
-Provide a symfony2 console function with completion for [fish shell](http://fishshell.com)
+Provide a symfony2 console function `sf` with tab completion for [fish shell](http://fishshell.com)
 
 ## Install
 
@@ -30,7 +30,7 @@ ln -s ~/.fish-sf/completions/sf.fish ~/.config/fish/completions/sf.fish
 ## Usage
 
 Some tab completion are only available when you are in a symfony directory, the command just use `app/console` provided by symfony2 
-to get some completion
+to get some completion.
 
 ### Available completion 
 
