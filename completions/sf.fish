@@ -1,12 +1,25 @@
+function __sf_use_table
+	if app/console --no-ansi --version | grep "2.3"
+		return 1
+	else
+		return 0
+	end
+end
 
 function __sf_get_config_bundle
-	type app/console > /dev/null
-	and app/console config:dump-reference | sed -e 's/^[^:]*: *//'
+	if not type app/console > /dev/null
+		return
+	end
+	if __sf_use_table
+		app/console --no-ansi config:dump-reference | sed -e '1,4 d; $d' -e 's/\| *\([^ ]*\).*$/\1/'
+	else
+		app/console config:dump-reference | sed -e 's/^[^:]*: *//'
+	end
 end
 
 function __sf_get_services
 	type app/console > /dev/null
-	and command ./app/console  --no-ansi container:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
+	and command ./app/console  --no-ansi container:debug | sed -e '1,2 d' -e '/^To search for a service,/d' -e 's/^ *\([^ ]*\).*/\1/'
 end
 
 function __sf_get_container_tag
@@ -16,7 +29,7 @@ end
 
 function __sf_get_routes
 	type app/console > /dev/null
-	and command ./app/console  --no-ansi router:debug | sed -e '1,2 d' -e 's/^\([^ ]*\).*/\1/'
+	and command ./app/console  --no-ansi router:debug | sed -e '1,2 d' -e 's/^ *\([^ ]*\).*/\1/'
 end
 
 complete -c sf -n '__fish_use_subcommand' -xa 'ca:cl'                                                 -d 'Clear cache'
