@@ -1,6 +1,6 @@
 # Fish-sf
 
-Provide a symfony2 console function `sf` with tab completion for [fish shell](http://fishshell.com)
+Provide a symfony2 console function `sf` with tab completion for [fish shell](http://fishshell.com) and `sf-init` function for project creation
 
 ## Install
 
@@ -29,10 +29,11 @@ ln -s ~/.fish-sf/completions/sf.fish ~/.config/fish/completions/sf.fish
 
 ## Usage
 
-Some tab completion are only available when you are in a symfony directory, the command just use `app/console` provided by symfony2 
-to get some completion.
+### sf function
 
-### Available completion 
+Some tab completion are only available when you are in a symfony directory, just type `sf ` followed by double tab to get completion.
+
+#### Available completion 
 
  - Cache
     * ca:cl
@@ -89,3 +90,20 @@ to get some completion.
  - generate:doctrine:entities and alias doctrine:generate:entities
     * --path with directories completion
     * --no-backup
+
+### sf-init function
+
+Initialize a symfony2 project with composer and set premissions for `app/cache` and `app/logs` with chmod or setfacl.
+
+Composer must be in your $PATH to use this function and script  may ask you for sudo password for setting acl.
+
+```shell
+sf-init [options] [path]
+```
+
+#### Options
+
+ - -h, --help : Print usage
+ - -l, --last-release : install symfony last release 
+
+By default, the script install the long time support version of symfony. If the path is not supplied, the project will be created in the current directory. 
