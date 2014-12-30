@@ -127,6 +127,7 @@ function sf-init -d 'Create symfony project'
 
 	set -l http_user (ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
 	set -l current_user (whoami)
+	set path ( echo $path | sed 's/^\(.*\)\/$/\1/')
 
 	# trying chmod +a
 	if  chmod --help 2>&1 | fgrep +a > /dev/null
@@ -134,16 +135,16 @@ function sf-init -d 'Create symfony project'
 		echo "Setting permession whith chmod +a"
 		set_color normal
 
-		sudo chmod +a "$http_user allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
-		sudo chmod +a "$current_user allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+		sudo chmod +a "$http_user allow delete,write,append,file_inherit,directory_inherit" $path/app/cache $path/app/logs
+		sudo chmod +a "$current_user allow delete,write,append,file_inherit,directory_inherit" $path/app/cache $path/app/logs
 
 	else if type setfacl > /dev/null
 		set_color green
 		echo "Setting permission with setfacl"
 		set_color normal
 
-		sudo setfacl -R -m u:"$http_user":rwX -m u:"$current_user":rwX app/cache app/logs
-		sudo setfacl -dR -m u:"$http_user":rwX -m u:"$current_user":rwX app/cache app/logs
+		sudo setfacl -R -m u:"$http_user":rwX -m u:"$current_user":rwX $path/app/cache $path/app/logs
+		sudo setfacl -dR -m u:"$http_user":rwX -m u:"$current_user":rwX $path/app/cache $path/app/logs
 
 	else
 		set_color ffa500
