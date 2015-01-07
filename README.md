@@ -19,8 +19,14 @@ curl -L https://github.com/mojoLyon/fish-sf/raw/master/tools/install.fish | fish
 ```shell
 git clone git://github.com/mojoLyon/fish-sf.git ~/.fish-sf
 ```
+2. Setting required directories
 
-2. Create symbolic link to function and completion
+```shell
+mkdir -p ~/.config/fish/functions
+mkdir -p ~/.config/fish/completions
+```
+
+3. Create symbolic link to function and completion
 
 ```shell
 ln -s ~/.fish-sf/functions/sf.fish ~/.config/fish/functions/sf.fish
