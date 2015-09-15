@@ -41,20 +41,22 @@ Some tab completion are only available when you are in a symfony directory, just
 
 #### Available completion 
 
+Completion for symfony builtin command below and custom command.
+
  - Cache
-    * ca:cl
-    * ca:wa
+    * cache:clear
+    * cache:warmup
  - assetic:dump
     * --watch
  - assets:install
     * --symlink
  - config:dump-reference with completion of bundle
- - container:debug with completion of services
+ - container:debug and debug:container with completion of services
     * --tags
     * --tag with tag completion
     * --parameters
     * --parameter
- - router:debug with completion of route name
+ - router:debug and debug:router with completion of route name
  - router:dump-apache
     * --base-uri
  - router:match
@@ -67,7 +69,7 @@ Some tab completion are only available when you are in a symfony directory, just
     * --clean
     * --output-format
     * --dump-messages
- - twig:lint with file filtering
+ - twig:lint and lint:twig with file filtering
  - generate:bundle
     * --no-interaction
     * --namespace
@@ -96,6 +98,28 @@ Some tab completion are only available when you are in a symfony directory, just
  - generate:doctrine:entities and alias doctrine:generate:entities
     * --path with directories completion
     * --no-backup
+ - server:start
+    * --docroot
+    * --router
+ - server:stop
+ - server:status
+ - security:encode-password
+   * --empty-salt
+ - security-check
+ - lint:yaml and yaml:lint with yaml file completion
+ - acl:set
+   * --user
+   * --role
+   * --class-scope
+ - twig:debug and debug:twig
+ - debug:translation and translation:debug
+   * --domain
+   * --only-missing
+   * --only-unused
+ - debug:event-dispatcher with event name completion
+   * --format
+ - debug:config and config:debug with bundle completion
+ - init-acl
 
 ### sf-init function
 
