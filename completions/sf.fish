@@ -1,3 +1,15 @@
+function __get_console_path
+	if test -e bin/console
+		echo 'bin/console'
+	else if test -e app/console
+		echo 'app/console'
+	else
+		set_color yellow
+		echo "No console found"
+		set_color normal
+	end
+end
+
 function __sf_use_table
 	if app/console --no-ansi --version | grep "2.3"
 		return 1
@@ -7,43 +19,43 @@ function __sf_use_table
 end
 
 function __sf_get_config_bundle
-	if not type app/console > /dev/null
+	if not type (__get_console_path) > /dev/null
 		return
 	end
 	if __sf_use_table
-		app/console --no-ansi config:dump-reference | sed -e '1,4 d; $d' -e 's/\| *\([^ ]*\).*$/\1/'
+		eval (__get_console_path) --no-ansi config:dump-reference | sed -e '1,4 d; $d' -e 's/\| *\([^ ]*\).*$/\1/'
 	else
-		app/console config:dump-reference | sed -e 's/^[^:]*: *//'
+		eval (__get_console_path) config:dump-reference | sed -e 's/^[^:]*: *//'
 	end
 end
 
 function __sf_get_services
-	type app/console > /dev/null
-	and command ./app/console  --no-ansi container:debug | sed -e '1,2 d' -e '/^To search for a service,/d' -e 's/^ *\([^ ]*\).*/\1/'
+	type (__get_console_path) > /dev/null
+	and eval ./(__get_console_path)  --no-ansi container:debug | sed -e '1,2 d' -e '/^To search for a service,/d' -e 's/^ *\([^ ]*\).*/\1/'
 end
 
 function __sf_get_container_tag
-	type app/console > /dev/null
-	and command ./app/console --no-ansi container:debug --tags | awk '/^\[tag\]/ {print $0}' | sed -e 's/^\[tag\] *\(.*\)/\1/'
+	type (__get_console_path) > /dev/null
+	and eval ./(__get_console_path) --no-ansi container:debug --tags | awk '/^\[tag\]/ {print $0}' | sed -e 's/^\[tag\] *\(.*\)/\1/'
 end
 
 function __sf_get_routes
-	type app/console > /dev/null
-	and command ./app/console  --no-ansi router:debug | sed -e '1,2 d' -e 's/^ *\([^ ]*\).*/\1/'
+	type (__get_console_path) > /dev/null
+	and eval ./(__get_console_path)  --no-ansi router:debug | sed -e '1,2 d' -e 's/^ *\([^ ]*\).*/\1/'
 end
 
 function __sf_get_events
-	type app/console > /dev/null
-	and command ./app/console --no-ansi debug:event-dispatcher | awk '/^\[Event\]/ {print $2}'
+	type (__get_console_path) > /dev/null
+	and eval ./(__get_console_path) --no-ansi debug:event-dispatcher | awk '/^\[Event\]/ {print $2}'
 end
 
 function __sf_get_custom_functions
-	if not type app/console > /dev/null
+	if not type (__get_console_path) > /dev/null
 		return
 	end
 
 	set -l builtin server:stop server:status server:start security:encode-password security:check lint:yaml yaml:lint acl:set debug:twig twig:debug debug:translation translation:debug debug:event-dispatcher generate:doctrine:entities doctrine:generate:entities generate:doctrine:form doctrine:generate:form generate:doctrine:entity doctrine:generate:entity generate:doctrine:crud doctrine:generate:crud generate:controller generate:bundle lint:twig twig:lint translation:update server:run router:match router:dump-apache debug:router router:debug debug:container container:debug debug:config config:debug config:dump-reference assets:install assetic:dump cache:warmup cache:clear list help init:acl
-	set -l cmdlist (command ./app/console --no-ansi | sed -e "1,/Available commands/d" -e 's/^ *\([^ ]*\)/\1/' -e '/^[^ ]*$/d' | awk '{print $1}')
+	set -l cmdlist (eval ./(__get_console_path) --no-ansi | sed -e "1,/Available commands/d" -e 's/^ *\([^ ]*\)/\1/' -e '/^[^ ]*$/d' | awk '{print $1}')
 	
 	for i in $cmdlist
 		if not contains $i $builtin

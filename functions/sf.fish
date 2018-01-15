@@ -1,5 +1,7 @@
 function sf --description "Symfony2 console"
-	if test -e app/console
+	if test -e bin/console
+		bin/console $argv
+	else if test -e app/console
 		app/console $argv
 	else
 		set_color yellow
@@ -11,7 +13,7 @@ end
 
 function __sfinit_help
 	echo "Usage : [options] [path]"
-	echo "Initialize a synfony2 project by installing symfony long time support with composer and setting up cache and log permissions"
+	echo "Initialize a symfony2 project by installing symfony long time support with composer and setting up cache and log permissions"
 	echo "You must have composer installed in your path environment to use this function"
 	echo "Options :"
 	echo "    -h, --help         : print this message"
